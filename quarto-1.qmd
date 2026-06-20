@@ -4,3 +4,30 @@ author: "Oluchi Nnadi"
 format: html
 ---
 
+```{r}
+#| echo: false
+#| message: false
+library(tidyverse)
+library(palmerpenguins)
+```
+
+```{r}
+#| echo: false
+penguins %>%
+  drop_na() %>% # Ensure there are no missing values
+  ggplot(aes(x = bill_length_mm, 
+             y = bill_depth_mm, 
+             color = species, 
+             size = body_mass_g)) +
+  geom_point(alpha = 0.7) +
+  theme_minimal() +
+  labs(
+    title = "Palmer Penguins: Bill Dimensions",
+    subtitle = "Analysis of bill length, depth, and body mass by species",
+    x = "Bill Length (mm)",
+    y = "Bill Depth (mm)",
+    color = "Species",
+    size = "Body Mass (g)"
+  ) +
+  scale_color_viridis_d(option = "plasma") # Using a beautiful color palette
+```
